@@ -1,0 +1,36 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{},"name":"bookinfo","namespace":"bookinfo"},"spec":{"gateways":["bookinfo-gateway"],"hosts":["*"],"http":[{"match":[{"uri":{"exact":"/productpage"}},{"uri":{"prefix":"/static"}},{"uri":{"exact":"/login"}},{"uri":{"exact":"/logout"}},{"uri":{"prefix":"/api/v1/products"}}],"route":[{"destination":{"host":"productpage","port":{"number":9080}}}]}]}}
+  creationTimestamp: "2022-05-26T00:37:44Z"
+  generation: 3
+  name: bookinfo
+  namespace: bookinfo
+  resourceVersion: "190529088"
+  uid: 891ae99e-644d-4d90-9a47-24f4d0e7fd06
+spec:
+  gateways:
+  - bookinfo-gateway
+  - bookinfo-gateway-tls
+  hosts:
+  - bookinfo.apps.ocp4.internal.local
+  - tls-bookinfo.apps.ocp4.internal.local
+  http:
+  - match:
+    - uri:
+        exact: /productpage
+    - uri:
+        prefix: /static
+    - uri:
+        exact: /login
+    - uri:
+        exact: /logout
+    - uri:
+        prefix: /api/v1/products
+    route:
+    - destination:
+        host: productpage
+        port:
+          number: 9080

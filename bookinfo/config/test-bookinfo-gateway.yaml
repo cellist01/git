@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  creationTimestamp: "2022-06-14T06:55:01Z"
+  generation: 1
+  name: test-bookinfo-gateway
+  namespace: bookinfo
+  resourceVersion: "202675895"
+  uid: 9ba2bda3-7339-411a-abeb-7060da82eaf5
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - test-bookinfo.apps.ocp4.internal.local
+    port:
+      name: http
+      number: 80
+      protocol: HTTP

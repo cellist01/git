@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.istio.io/v1alpha3","kind":"DestinationRule","metadata":{"annotations":{},"name":"productpage","namespace":"bookinfo"},"spec":{"host":"productpage","subsets":[{"labels":{"version":"v1"},"name":"v1"}],"trafficPolicy":{"tls":{"mode":"ISTIO_MUTUAL"}}}}
+  creationTimestamp: "2022-05-26T02:12:49Z"
+  generation: 2
+  name: productpage
+  namespace: bookinfo
+  resourceVersion: "171479320"
+  uid: cf83c458-c110-40f6-8f59-e2fb513530f3
+spec:
+  host: productpage
+  subsets:
+  - labels:
+      version: v1
+    name: v1
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL

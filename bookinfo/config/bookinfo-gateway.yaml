@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.istio.io/v1alpha3","kind":"Gateway","metadata":{"annotations":{},"name":"bookinfo-gateway","namespace":"bookinfo"},"spec":{"selector":{"istio":"ingressgateway"},"servers":[{"hosts":["*"],"port":{"name":"http","number":80,"protocol":"HTTP"}}]}}
+  creationTimestamp: "2022-05-26T00:37:44Z"
+  generation: 4
+  name: bookinfo-gateway
+  namespace: bookinfo
+  resourceVersion: "190580218"
+  uid: 199c6498-8118-403e-971b-6378d35028a6
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - bookinfo.apps.ocp4.internal.local
+    port:
+      name: http
+      number: 80
+      protocol: HTTP

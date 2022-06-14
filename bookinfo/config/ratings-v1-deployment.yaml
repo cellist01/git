@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"ratings","version":"v1"},"name":"ratings-v1","namespace":"bookinfo"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"ratings","version":"v1"}},"template":{"metadata":{"annotations":{"sidecar.istio.io/inject":"true"},"labels":{"app":"ratings","version":"v1"}},"spec":{"containers":[{"image":"quay.io/maistra/examples-bookinfo-ratings-v1:2.1.0","imagePullPolicy":"IfNotPresent","name":"ratings","ports":[{"containerPort":9080}]}],"serviceAccountName":"bookinfo-ratings"}}}}
+  creationTimestamp: "2022-05-26T00:36:03Z"
+  generation: 1
+  labels:
+    app: ratings
+    version: v1
+  name: ratings-v1
+  namespace: bookinfo
+  resourceVersion: "190661020"
+  uid: b2dfe1ab-1eda-436f-93c8-0a885f479f21
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: ratings
+      version: v1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "true"
+      creationTimestamp: null
+      labels:
+        app: ratings
+        version: v1
+    spec:
+      containers:
+      - image: quay.io/maistra/examples-bookinfo-ratings-v1:2.1.0
+        imagePullPolicy: IfNotPresent
+        name: ratings
+        ports:
+        - containerPort: 9080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: bookinfo-ratings
+      serviceAccountName: bookinfo-ratings
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2022-05-26T00:36:03Z"
+    lastUpdateTime: "2022-05-26T00:36:59Z"
+    message: ReplicaSet "ratings-v1-bdbcc68bc" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2022-06-07T15:53:54Z"
+    lastUpdateTime: "2022-06-07T15:53:54Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  updatedReplicas: 1
